@@ -1,10 +1,10 @@
 package com.jet.hencoder;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.BaseActivity;
+import com.hencoder.hencoderpracticedraw1.Activity11;
 
 public class MainActivity extends BaseActivity {
 
@@ -16,6 +16,6 @@ public class MainActivity extends BaseActivity {
     }
 
     public void goPracticeDraw1(View view) {
-        jump(com.hencoder.hencoderpracticedraw1.MainActivity.class);
+        jump(Activity11.class);
     }
 }

@@ -23,17 +23,27 @@ import java.util.List;
  * 2018/3/23 10:43
  */
 
-public class MainActivity extends BaseActivity {
+public class Activity11 extends BaseActivity {
     private TabLayout tableLayout;
     private ViewPager viewPager;
     List<PageModel> pageModels = new ArrayList<>();
     {
         pageModels.add(new PageModel(R.layout.sample_color,R.layout.practice_color,R.string.title_draw_color));
+        pageModels.add(new PageModel(R.layout.sample_circle,R.layout.practice_circle,R.string.title_draw_circle));
+        pageModels.add(new PageModel(R.layout.sample_rect,R.layout.practice_rect,R.string.title_draw_rect));
+        pageModels.add(new PageModel(R.layout.sample_point, R.layout.practice_point,R.string.title_draw_point));
+        pageModels.add(new PageModel(R.layout.sample_oval, R.layout.practice_oval,R.string.title_draw_oval));
+        pageModels.add(new PageModel(R.layout.sample_line, R.layout.practice_line,R.string.title_draw_line));
+        pageModels.add(new PageModel(R.layout.sample_round_rect, R.layout.practice_round_rect,R.string.title_draw_round_rect));
+        pageModels.add(new PageModel(R.layout.sample_arc,R.layout.practice_arc,R.string.title_draw_arc));
+        pageModels.add(new PageModel(R.layout.sample_path,R.layout.practice_path,R.string.title_draw_path));
+        pageModels.add(new PageModel(R.layout.sample_histogram,R.layout.practice_histogram,R.string.title_draw_histogram));
+        pageModels.add(new PageModel(R.layout.sample_pie_chart,R.layout.practice_pie_chart,R.string.title_draw_pie_chart));
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_11);
         tableLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.pager);

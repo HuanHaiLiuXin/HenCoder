@@ -16,12 +16,6 @@ import android.view.WindowManager;
  */
 
 public class BaseActivity extends AppCompatActivity{
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
     public void jump(Class clazz){
         startActivity(new Intent(BaseActivity.this,clazz));
     }
