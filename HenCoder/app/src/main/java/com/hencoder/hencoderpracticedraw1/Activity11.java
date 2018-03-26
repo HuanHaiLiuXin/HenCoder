@@ -38,7 +38,7 @@ public class Activity11 extends BaseActivity {
         pageModels.add(new PageModel(R.layout.sample_arc,R.layout.practice_arc,R.string.title_draw_arc));
         pageModels.add(new PageModel(R.layout.sample_path,R.layout.practice_path,R.string.title_draw_path));
         pageModels.add(new PageModel(R.layout.sample_histogram,R.layout.practice_histogram,R.string.title_draw_histogram));
-        pageModels.add(new PageModel(R.layout.sample_pie_chart,R.layout.practice_pie_chart,R.string.title_draw_pie_chart));
+        pageModels.add(new PageModel(R.layout.sample_pie_chart,R.layout.practice12_pie_chart,R.string.title_draw_pie_chart));
     }
 
     @Override

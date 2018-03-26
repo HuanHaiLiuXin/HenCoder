@@ -4,11 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -45,6 +42,7 @@ public class Practice11PieChartView extends View {
     private Paint mTitlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private float mCircleCenterX;
     private float mCircleCenterY;
+
     {
         pieChartData.add(new PieChartData("Gingerbread", 0xFF9C27B0, 5, 1));
         pieChartData.add(new PieChartData("IceCreamSandwich", 0xFF9E9E9E, 4, 1));
@@ -65,21 +63,27 @@ public class Practice11PieChartView extends View {
         mTitlePaint.setTextSize(45);
         mTitlePaint.setTextAlign(Paint.Align.CENTER);
     }
+
     public Practice11PieChartView(Context context) {
         super(context);
         init();
     }
+
     public Practice11PieChartView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
+
     public Practice11PieChartView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
+
     private void init() {
     }
+
     private int mRectPadding = 100;
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         mWidth = measureHandler(widthMeasureSpec);
@@ -106,6 +110,7 @@ public class Practice11PieChartView extends View {
         mCircleCenterX = (mRectRight + mRectLeft) / 2;
         mCircleCenterY = (mRectBottom + mRectTop) / 2;
     }
+
     private int measureHandler(int measureSpec) {
         int result = 0;
         int size = MeasureSpec.getSize(measureSpec);
@@ -117,6 +122,7 @@ public class Practice11PieChartView extends View {
         }
         return result;
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -194,6 +200,7 @@ public class Practice11PieChartView extends View {
         }
         canvas.drawText("饼图", mCircleCenterX, mAbsHeight - mBottomTitleHeight * 0.5F, mTitlePaint);
     }
+
     public class PieChartData {
 
         private String title;
