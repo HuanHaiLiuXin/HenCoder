@@ -1,7 +1,6 @@
 package com.hencoder.hencoderpracticedraw1;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -11,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
 
 import com.BaseActivity;
+import com.PageFragment;
 import com.jet.hencoder.R;
 
 import java.util.ArrayList;

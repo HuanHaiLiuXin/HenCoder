@@ -1,4 +1,4 @@
-package com.hencoder.hencoderpracticedraw1;
+package com;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
