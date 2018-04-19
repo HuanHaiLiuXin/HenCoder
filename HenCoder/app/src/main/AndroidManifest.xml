@@ -18,6 +18,7 @@
         </activity>
         <activity android:name="com.hencoder.hencoderpracticedraw1.Activity11"/>
         <activity android:name="com.hencoder.hencoderpracticedraw2.Activity12"/>
+        <activity android:name="com.hencoder.hencoderpracticedraw3.Activity13"/>
     </application>
 
 </manifest>

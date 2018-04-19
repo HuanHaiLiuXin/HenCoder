@@ -7,22 +7,28 @@
     tools:context="com.jet.hencoder.MainActivity"
     android:fillViewport="true"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PracticeDraw1"
             android:onClick="goPracticeDraw1"
-            />
+            android:text="PracticeDraw1" />
+
         <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PracticeDraw2"
             android:onClick="goPracticeDraw2"
-            />
+            android:text="PracticeDraw2" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goPracticeDraw3"
+            android:text="PracticeDraw3" />
     </LinearLayout>
 </ScrollView>
