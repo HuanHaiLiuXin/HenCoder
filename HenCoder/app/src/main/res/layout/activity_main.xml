@@ -30,5 +30,10 @@
             android:layout_height="wrap_content"
             android:onClick="goPracticeDraw3"
             android:text="PracticeDraw3" />
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goPracticeDraw4"
+            android:text="PracticeDraw4" />
     </LinearLayout>
 </ScrollView>

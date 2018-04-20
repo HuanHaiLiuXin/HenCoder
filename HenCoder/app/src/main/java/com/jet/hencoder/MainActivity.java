@@ -7,6 +7,7 @@ import com.BaseActivity;
 import com.hencoder.hencoderpracticedraw1.Activity11;
 import com.hencoder.hencoderpracticedraw2.Activity12;
 import com.hencoder.hencoderpracticedraw3.Activity13;
+import com.hencoder.hencoderpracticedraw4.Activity14;
 
 public class MainActivity extends BaseActivity {
 
@@ -27,5 +28,9 @@ public class MainActivity extends BaseActivity {
 
     public void goPracticeDraw3(View view) {
         jump(Activity13.class);
+    }
+
+    public void goPracticeDraw4(View view) {
+        jump(Activity14.class);
     }
 }
