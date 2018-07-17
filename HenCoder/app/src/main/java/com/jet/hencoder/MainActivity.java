@@ -8,6 +8,7 @@ import com.hencoder.hencoderpracticedraw1.Activity11;
 import com.hencoder.hencoderpracticedraw2.Activity12;
 import com.hencoder.hencoderpracticedraw3.Activity13;
 import com.hencoder.hencoderpracticedraw4.Activity14;
+import com.plus.HenCoderPlusMainActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -15,7 +16,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getSupportActionBar().hide();
     }
 
     public void goPracticeDraw1(View view) {
@@ -32,5 +33,9 @@ public class MainActivity extends BaseActivity {
 
     public void goPracticeDraw4(View view) {
         jump(Activity14.class);
+    }
+
+    public void goPlus(View view) {
+        jump(HenCoderPlusMainActivity.class);
     }
 }

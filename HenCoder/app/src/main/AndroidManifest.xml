@@ -16,10 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.hencoder.hencoderpracticedraw1.Activity11"/>
-        <activity android:name="com.hencoder.hencoderpracticedraw2.Activity12"/>
-        <activity android:name="com.hencoder.hencoderpracticedraw3.Activity13"/>
-        <activity android:name="com.hencoder.hencoderpracticedraw4.Activity14"/>
+        <activity android:name="com.hencoder.hencoderpracticedraw1.Activity11" />
+        <activity android:name="com.hencoder.hencoderpracticedraw2.Activity12" />
+        <activity android:name="com.hencoder.hencoderpracticedraw3.Activity13" />
+        <activity android:name="com.hencoder.hencoderpracticedraw4.Activity14" />
+        <activity android:name="com.plus.HenCoderPlusMainActivity" />
+        <activity android:name="com.plus.chapter6.Plus6Activity"></activity>
     </application>
 
 </manifest>
