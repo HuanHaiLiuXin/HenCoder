@@ -7,6 +7,7 @@ import android.view.View;
 import com.BaseActivity;
 import com.jet.hencoder.R;
 import com.plus.chapter6.Plus6Activity;
+import com.plus.chapter7.Plus7Activity;
 
 public class HenCoderPlusMainActivity extends BaseActivity {
 
@@ -19,5 +20,9 @@ public class HenCoderPlusMainActivity extends BaseActivity {
 
     public void goPlus6(View view) {
         jump(Plus6Activity.class);
+    }
+
+    public void goPlus7(View view) {
+        jump(Plus7Activity.class);
     }
 }

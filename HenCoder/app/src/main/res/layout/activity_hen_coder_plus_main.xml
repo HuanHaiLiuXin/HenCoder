@@ -19,5 +19,12 @@
             android:text="自定义绘制、Paint 的完全攻略与文字的绘制"
             android:onClick="goPlus6"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="范围裁切和几何变换、硬件加速、Drawable等"
+            android:onClick="goPlus7"
+            />
     </LinearLayout>
 </ScrollView>
