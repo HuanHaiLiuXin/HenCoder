@@ -68,7 +68,7 @@ public class DemoView extends View {
     }*/
 
     //圆形头像
-    private float PADDING = Utils.dp2px(20);
+    /*private float PADDING = Utils.dp2px(20);
     private float RADIUS;
     private Xfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -77,6 +77,21 @@ public class DemoView extends View {
     private RectF rectF = new RectF();
     {
         paint.setStyle(Paint.Style.FILL);
+    }*/
+
+    //带图片的TextView
+    private String str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac dui tincidunt, elementum sapien nec, euismod libero. Nullam lectus ante, tincidunt ut posuere ut, finibus ut felis. Suspendisse laoreet quam egestas malesuada mattis. Pellentesque ultrices ex eget augue ultrices auctor. In vehicula fermentum eros. Ut tortor magna, ultrices id neque non, scelerisque molestie orci. Maecenas dolor risus, posuere quis magna vitae, blandit aliquet ligula. Integer bibendum, diam et lobortis accumsan, mi risus viverra magna, ut vehicula ipsum arcu ac ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus sagittis est risus, et commodo nulla tincidunt luctus. Proin egestas lacinia accumsan. In et dictum urna, eu vestibulum dolor.";
+    private float PADDING = Utils.dp2px(20);
+    private Bitmap head;
+    private float IMAGE_X_OFFSET = Utils.dp2px(80);
+    private float IMAGE_Y_OFFSET = Utils.dp2px(40);
+    private float IMAGE_SIZE = Utils.dp2px(100);
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint.FontMetrics fontMetrics = new Paint.FontMetrics();
+    {
+        paint.setTextSize(Utils.dp2px(16));
+        paint.getFontMetrics(fontMetrics);
+        head = gainAppropriateBitmap((int) IMAGE_SIZE);
     }
 
     public DemoView(Context context) {
@@ -134,7 +149,7 @@ public class DemoView extends View {
         }*/
 
         //圆形头像
-        RADIUS = Math.min(getWidth()/2,getHeight()/2) - PADDING;
+        /*RADIUS = Math.min(getWidth()/2,getHeight()/2) - PADDING;
         canvas.drawCircle(getWidth()/2,getHeight()/2,RADIUS,paint);
         float innerRadius = RADIUS-borderWidth;
         rectF.set(getWidth()/2 -innerRadius,getHeight()/2 - innerRadius,getWidth()/2 + innerRadius,getHeight()/2 + innerRadius);
@@ -144,15 +159,85 @@ public class DemoView extends View {
         paint.setXfermode(xfermode);
         canvas.drawBitmap(bitmap,getWidth()/2 - innerRadius,getHeight()/2-innerRadius,paint);
         canvas.restoreToCount(saveCount);
-        paint.setXfermode(null);
+        paint.setXfermode(null);*/
+
+        //带图片的TextView
+        //绘制图片
+        canvas.drawBitmap(head,PADDING + IMAGE_X_OFFSET,PADDING+IMAGE_Y_OFFSET,paint);
+        //图片的左上右下坐标
+        float imageLeft = PADDING + IMAGE_X_OFFSET;
+        float imageTop = PADDING + IMAGE_Y_OFFSET;
+        float imageRight = imageLeft + IMAGE_SIZE;
+        float imageBottom = imageTop + IMAGE_SIZE;
+        //绘制文字
+        //图片左右两边文字最大宽度
+        float leftWidth = IMAGE_X_OFFSET;
+        float rightWidth = getWidth() - PADDING - imageRight;
+        float totalWidth = getWidth() - PADDING * 2;
+        float maxWidth = totalWidth;
+        float y = PADDING - fontMetrics.top;
+        int start = 0;
+        int count;
+        //确定第一行文字会不会和图片相交
+        if(y + fontMetrics.bottom < imageTop || y + fontMetrics.top > imageBottom){
+            //当前行文字和图片不会相交,直接绘制即可
+            maxWidth = totalWidth;
+        }else{
+            //当前行文字和图片会相交,要分别在图片左右两侧绘制
+            maxWidth = leftWidth;
+        }
+        count = paint.breakText(str,start,str.length(),true,maxWidth,null);
+        while(count > 0 && start < str.length()){
+            if(y + fontMetrics.bottom < imageTop || y + fontMetrics.top > imageBottom){
+                //当前行文字和图片不会相交,直接绘制即可
+                maxWidth = totalWidth;
+                count = paint.breakText(str,start,str.length(),true,maxWidth,null);
+                if(count > 0){
+                    canvas.drawText(str,start,start+count,PADDING,y,paint);
+                    start += count;
+                }
+            }else{
+                //当前行文字和图片会相交,要分别在图片左右两侧绘制
+                maxWidth = leftWidth;
+                count = paint.breakText(str,start,str.length(),true,maxWidth,null);
+                if(count > 0){
+                    canvas.drawText(str,start,start+count,PADDING,y,paint);
+                    start += count;
+                }
+                if(start < str.length()){
+                    maxWidth = rightWidth;
+                    count = paint.breakText(str,start,str.length(),true,maxWidth,null);
+                    if(count > 0){
+                        canvas.drawText(str,start,start+count,imageRight,y,paint);
+                        start += count;
+                    }
+                }
+            }
+            y += paint.getFontSpacing();
+        }
     }
     //圆形头像
     private Bitmap gainAppropriateBitmap(int width){
         Log.e("Jet","gainAppropriateBitmap:"+width);
-        Bitmap headOri = BitmapFactory.decodeResource(getResources(), R.mipmap.head);
-        Bitmap head = Bitmap.createScaledBitmap(headOri,width,width,true);
+//        Bitmap headOri = BitmapFactory.decodeResource(getResources(), R.mipmap.head);
+//        Bitmap head = Bitmap.createScaledBitmap(headOri,width,width,true);
+//        return head;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        //单纯获取图片原始宽度:inJustDecodeBounds = true
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(getResources(),R.mipmap.head,options);
+        //获取到图片原始宽度后,inJustDecodeBounds变更为false
+        options.inJustDecodeBounds = false;
+        //inDensity:Bitmap原始像素值
+        options.inDensity = options.outWidth;
+        //inTargetDensity:生成的Bitmap被绘制到屏幕上的实际像素值
+        options.inTargetDensity = width;
+        Bitmap head = BitmapFactory.decodeResource(getResources(),R.mipmap.head,options);
         return head;
     }
+
+
     //饼图
     /*public void setOutSegment(int outSegment){
         this.outSegment = outSegment % this.colors.length;

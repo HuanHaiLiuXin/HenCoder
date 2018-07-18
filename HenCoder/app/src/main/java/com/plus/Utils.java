@@ -16,4 +16,7 @@ public final class Utils {
     public static float dp2px(float dp){
         return Resources.getSystem().getDisplayMetrics().density * dp;
     }
+    public static int screenWidth(){
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
 }
