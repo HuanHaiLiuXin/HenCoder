@@ -36,7 +36,7 @@ public class FlipboardView extends View {
     private Matrix matrix = new Matrix();
     private Camera camera = new Camera();
     private float currValue = 0.0F;
-    private ObjectAnimator animator = ObjectAnimator.ofFloat(this,"currValue",0.0F,0.25F,0.75F,1.0F);
+    private ObjectAnimator animator = ObjectAnimator.ofFloat(this,"currValue",0.0F,0.20F,0.80F,1.0F);
 
     public float getCurrValue() {
         return currValue;
@@ -48,7 +48,7 @@ public class FlipboardView extends View {
 
     {
         bitmap = gainAppropriateBitmap((int) imageSize);
-        animator.setDuration(1200);
+        animator.setDuration(8000);
         animator.setRepeatMode(ObjectAnimator.RESTART);
         animator.setRepeatCount(ObjectAnimator.INFINITE);
         camera.setLocation(0,0,-16);
@@ -84,7 +84,7 @@ public class FlipboardView extends View {
         return head;
     }
 
-    @Override
+    /*@Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         centerX = getWidth()/2;
@@ -156,6 +156,79 @@ public class FlipboardView extends View {
             canvas.save();
             canvas.clipRect(0,centerY,getWidth(),getHeight());
             canvas.concat(matrix);
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+        }
+    }*/
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        centerX = getWidth()/2;
+        centerY = getHeight()/2;
+        offsetX = (getWidth() - imageSize)/2;
+        offsetY = (getHeight() - imageSize)/2;
+        //重置Matrix
+        matrix.reset();
+        if(currValue <= 0.20F){
+            //右边渐变转动
+            canvas.save();
+            canvas.translate(centerX,centerY);
+            camera.save();
+            camera.rotateY(-45.0F * currValue / 0.20F);
+            camera.applyToCanvas(canvas);
+            camera.restore();
+            canvas.clipRect(0,-centerY,centerX,centerY);
+            canvas.translate(-centerX,-centerY);
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+            //左边保持不变
+            canvas.save();
+            canvas.clipRect(0,0,centerX,getHeight());
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+        }else if(currValue <= 0.80F){
+            //-45度翻转,从上到下
+            canvas.save();
+            canvas.translate(centerX,centerY);
+            canvas.rotate(-180.0F * (currValue - 0.20F) / 0.60F);
+            camera.save();
+            camera.rotateX(-45.0F);
+            camera.applyToCanvas(canvas);
+            camera.restore();
+            canvas.clipRect(-centerX,-centerY,centerX,0);
+            canvas.rotate(180.0F * (currValue - 0.20F) / 0.60F);
+            canvas.translate(-centerX,-centerY);
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+            //保持不变部分
+            canvas.save();
+            canvas.rotate(-180.0F * (currValue - 0.20F) / 0.60F,centerX,centerY);
+            canvas.clipRect(0,centerY,getWidth(),getHeight());
+            canvas.rotate(180.0F * (currValue - 0.20F) / 0.60F,centerX,centerY);
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+        }else{
+            //上半部分渐变转动至-45度
+            canvas.save();
+            canvas.translate(centerX,centerY);
+            camera.save();
+            camera.rotateX(-45.0F * (currValue - 0.80F) / 0.20F);
+            camera.applyToCanvas(canvas);
+            camera.restore();
+            canvas.clipRect(-centerX,-centerY,centerX,0);
+            canvas.translate(-centerX,-centerY);
+            canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
+            canvas.restore();
+            //下半部分保持转动45度
+            canvas.save();
+            canvas.translate(centerX,centerY);
+            camera.save();
+            camera.rotateX(45.0F);
+            camera.applyToCanvas(canvas);
+            camera.restore();
+            canvas.clipRect(-centerX,0,centerX,centerY);
+            canvas.translate(-centerX,-centerY);
             canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
             canvas.restore();
         }
