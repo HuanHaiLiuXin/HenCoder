@@ -3,6 +3,7 @@ package com.plus.chapter7;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,7 +28,7 @@ import com.plus.Utils;
 public class FlipboardView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap bitmap;
-    private float imageSize = Utils.dp2px(200.0F);
+    private float imageSize = Utils.dp2px(240.0F);
     private float centerX;
     private float centerY;
     private float offsetX;
@@ -47,13 +48,9 @@ public class FlipboardView extends View {
 
     {
         bitmap = gainAppropriateBitmap((int) imageSize);
-        animator.setDuration(8000);
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-            }
-        });
+        animator.setDuration(1200);
+        animator.setRepeatMode(ObjectAnimator.RESTART);
+        animator.setRepeatCount(ObjectAnimator.INFINITE);
         camera.setLocation(0,0,-16);
     }
     public void go(){
@@ -115,32 +112,24 @@ public class FlipboardView extends View {
             canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
             canvas.restore();
         }else if(currValue <= 0.75F){
-            //从上到左到下依次妍X轴旋转45度
-            //旋转部分
+            //变化部分
             camera.save();
-            camera.rotateX(45.0F);
-            camera.getMatrix(matrix);
-            camera.restore();
-            matrix.preTranslate(-centerX,-centerY);
-            matrix.postTranslate(centerX,centerY);
-            matrix.preRotate(-180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
-            matrix.postRotate(180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
+            camera.rotateX(-45.0F);
             canvas.save();
-            canvas.clipRect(0,0,getWidth(),centerY);
-            canvas.concat(matrix);
+            canvas.translate(centerX,centerY);
+            canvas.rotate(-180.0F * (currValue - 0.25F) / 0.50F);
+            camera.applyToCanvas(canvas);
+            camera.restore();
+            canvas.clipRect(-centerX,-centerY,centerX,0);
+            canvas.rotate(180.0F * (currValue - 0.25F) / 0.50F);
+            canvas.translate(-centerX,-centerY);
             canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
             canvas.restore();
-            //正常绘制部分
-            matrix.reset();
-            camera.save();
-            camera.rotateX(0.0F);
-            camera.getMatrix(matrix);
-            camera.restore();
-            matrix.preRotate(-180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
-            matrix.postRotate(180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
+            //不变部分
             canvas.save();
+            canvas.rotate(-180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
             canvas.clipRect(0,centerY,getWidth(),getHeight());
-            canvas.concat(matrix);
+            canvas.rotate(180.0F * (currValue - 0.25F) / 0.50F,centerX,centerY);
             canvas.drawBitmap(bitmap,offsetX,offsetY,paint);
             canvas.restore();
         }else{

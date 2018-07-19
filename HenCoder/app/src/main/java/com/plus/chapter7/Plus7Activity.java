@@ -15,6 +15,7 @@ public class Plus7Activity extends BaseActivity {
         setContentView(R.layout.activity_plus7);
         getSupportActionBar().hide();
         demo = findViewById(R.id.demo);
+        demo.go();
     }
 
     public void change(View view) {
