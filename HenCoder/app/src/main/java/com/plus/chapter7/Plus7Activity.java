@@ -7,7 +7,8 @@ import com.BaseActivity;
 import com.jet.hencoder.R;
 
 public class Plus7Activity extends BaseActivity {
-    private FlipboardView demo;
+//    private FlipboardView demo;
+    private MatrixSetPolyToPolyView demo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +16,7 @@ public class Plus7Activity extends BaseActivity {
         setContentView(R.layout.activity_plus7);
         getSupportActionBar().hide();
         demo = findViewById(R.id.demo);
-        demo.go();
+//        demo.go();
     }
 
     public void change(View view) {
