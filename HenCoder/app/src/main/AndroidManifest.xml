@@ -21,8 +21,12 @@
         <activity android:name="com.hencoder.hencoderpracticedraw3.Activity13" />
         <activity android:name="com.hencoder.hencoderpracticedraw4.Activity14" />
         <activity android:name="com.plus.HenCoderPlusMainActivity" />
-        <activity android:name="com.plus.chapter6.Plus6Activity"></activity>
-        <activity android:name="com.plus.chapter7.Plus7Activity"></activity>
+        <activity android:name="com.plus.chapter6.Plus6Activity" />
+        <activity android:name="com.plus.chapter7.Plus7Activity" />
+        <activity android:name="com.plus.chapter9.Plus9Activity" />
+        <activity android:name="com.plus.chapter9.SquareImageViewActivity" />
+        <activity android:name="com.plus.chapter9.CircleViewActivity" />
+        <activity android:name="com.plus.chapter9.TagLayoutActivity"></activity>
     </application>
 
 </manifest>

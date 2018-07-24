@@ -8,6 +8,7 @@ import com.BaseActivity;
 import com.jet.hencoder.R;
 import com.plus.chapter6.Plus6Activity;
 import com.plus.chapter7.Plus7Activity;
+import com.plus.chapter9.Plus9Activity;
 
 public class HenCoderPlusMainActivity extends BaseActivity {
 
@@ -24,5 +25,9 @@ public class HenCoderPlusMainActivity extends BaseActivity {
 
     public void goPlus7(View view) {
         jump(Plus7Activity.class);
+    }
+
+    public void goPlus9(View view) {
+        jump(Plus9Activity.class);
     }
 }

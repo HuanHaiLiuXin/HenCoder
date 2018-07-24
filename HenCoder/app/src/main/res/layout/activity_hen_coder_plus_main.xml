@@ -26,5 +26,12 @@
             android:text="范围裁切和几何变换、硬件加速、Drawable等"
             android:onClick="goPlus7"
             />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="自定义尺寸和内部布局、手写 TagLayout"
+            android:onClick="goPlus9"
+            />
     </LinearLayout>
 </ScrollView>
